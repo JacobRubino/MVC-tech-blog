@@ -1,0 +1,12 @@
+[
+  {
+      "postTitle": "Wow that submarine...",
+      "postBody": "that was devasting",
+      "user_id": 1
+  }, 
+  {
+      "postTitle": "MVC is so cool",
+      "postBody": "MVC allows for developers to do so many cool things! This website was made with MVC",
+      "user_id": 3
+  }
+]

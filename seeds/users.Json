@@ -1,17 +1,20 @@
 [
   {
+    "id": "1",
     "username": "jacob",
-    "password": "",
-    "":
+    "password": "chipotle123",
+    "email": "jacob@gmail.com"
   },
   {
+    "id": "2",
     "username": "daelen",
-    "password": "",
-    "": 
+    "password": "piballwizard32",
+    "email": "daelen@gmail.com"
   },
   {
+    "id": "3",
     "username": "gerson",
-    "password": "",
-    "":
+    "password": "godCoder321",
+    "email": "gerson@gmail.com"
   }
 ]
