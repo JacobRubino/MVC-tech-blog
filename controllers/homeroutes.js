@@ -12,27 +12,12 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/post/:id', async (req, res) => {
-  try {
-    const postData = await Post.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['id'],
-        },
-      ],
-    });
-
-    const post = postData.get({ plain: true });
-
-    res.render('post', {
-      ...post,
-      logged_in: req.session.logged_in,
-      format_date,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+router.get('/login', (req, res) => {
+  res.render('login', {
+    layout: 'main',
+    logged_in: req.session.logged_in,
+    format_date,
+  });
 });
 
 router.get('/dashboard', withAuth, async (req, res) => {
