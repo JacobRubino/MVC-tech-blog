@@ -43,6 +43,7 @@ app.use('/api', routes);
 app.use('/', homeRoutes);
 app.use('/login', loginRoutes);
 
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
-});
+sequelize.sync({ force: false })
+  .then(() => {
+    app.listen(PORT, () => console.log('Now listening'));
+  })

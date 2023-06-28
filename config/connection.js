@@ -19,8 +19,7 @@ if (process.env.JAWSDB_URL) {
   );
 }
 
-sequelize
-  .authenticate()
+sequelize.authenticate()
   .then(() => {
     console.log('Database connection has been established successfully.');
   })
