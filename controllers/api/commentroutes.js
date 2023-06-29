@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Comment } = require('../../models');
+const { Comment } = require('../../models/comment');
 const Auth = require('../../utils/auth');
 const Filter = require('bad-words');
 const filter = new Filter();
@@ -31,4 +31,4 @@ router.post('/', Auth, async (req, res) => {
   }
 });
 
-module.expo
+module.exports = router;

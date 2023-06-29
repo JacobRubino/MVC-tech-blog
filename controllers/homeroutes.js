@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Post, User, Comment } = require('../models');
-const { format_date } = require('../utils/helpers');
-const withAuth = require('../utils/auth');
+const Auth = require('../utils/auth');
 
 router.get('/', (req, res) => {
   res.render('homepage', {
@@ -20,7 +19,7 @@ router.get('/login', (req, res) => {
   });
 });
 
-router.get('/dashboard', withAuth, async (req, res) => {
+router.get('/dashboard', Auth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
@@ -38,12 +37,38 @@ router.get('/dashboard', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-router.get('/signup', (req, res) => {
-  if (req.session.loggedIn) {
-      res.redirect('/')
-      return
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
   }
-  res.render('signup')
-})
+});
+// router.get('/signup', (req, res) => {
+//   if (req.session.loggedIn) {
+//     res.redirect('/');
+//     return;
+//   }
+//   res.render('signup');
+// });
+// router.post('/signup', async (req, res) => {
+//   try {
+//     const { username, email, password } = req.body;
+
+//     const newUser = await User.create({
+//       username,
+//       email,
+//       password,
+//     });
+
+//     res.status(200).json({ message: 'Signup successful' });
+//   } catch (error) {
+//     console.error('Error:', error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// });
+
+
 module.exports = router;
